@@ -18,6 +18,7 @@ from django.urls import include, path
 
 from django_registration.backends.one_step.views import RegistrationView
 
+from apps.common.views import IndexTemplateView
 from apps.user.forms import CustomUserForm
 from project.settings import AUTH_USER_MODEL
 
