@@ -47,7 +47,9 @@ urlpatterns = [
 
     path("api/rest-auth/registration/", include("rest_auth.registration.urls")),
 
-    path("api/", include("apps.user.api.urls")),
+    path("api/", include("apps.api.urls")),
+
+    path("api/user", include("apps.api.user.urls")),
 
     path("", IndexTemplateView.as_view(), name="entry-point")
 
