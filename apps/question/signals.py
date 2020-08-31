@@ -9,7 +9,7 @@ from apps.question.models import Question
 @receiver(pre_save, sender=Question)
 def add_slug_to_question(sender, instance, *args, **kwargs):
     if instance and not instance.slug:
-        content = instance.content[30]
+        content = instance.content[:20]
         slug = slugify(content)
         random_string = generate_random_string()
         instance.slug = slug + "-" + random_string
