@@ -28,20 +28,20 @@ class AnswerSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
     created_at = serializers.SerializerMethodField()
     likes_count = serializers.SerializerMethodField()
-    user_has_voted = serializers.SerializerMethodField()
+    user_has_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = Answer
-        exclude = ["question", "voters", "updated_at"]
+        exclude = ["question", "likes", "updated_at"]
 
     def get_created_at(self, instance):
         return instance.created_at.strftime("%B, %d %Y")
 
     def get_likes_count(self, instance):
-        return instance.voters.count()
+        return instance.likes.count()
 
-    def get_user_has_voted(self, instance):
+    def get_user_has_liked(self, instance):
         request = self.context.get("request")
-        return instance.voters.filter(pk=request.user.pk).exists()
+        return instance.likes.filter(pk=request.user.pk).exists()
 
 

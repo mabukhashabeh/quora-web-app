@@ -31,9 +31,9 @@ class Answer(BaseModel):
         User,
         on_delete=models.CASCADE
     )
-    voters = models.ManyToManyField(
+    likes = models.ManyToManyField(
         User,
-        related_name="votes"
+        related_name="likes"
     )
 
     def __str__(self):

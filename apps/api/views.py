@@ -62,11 +62,11 @@ class AnswerLikeAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def delete(self, request, pk):
-        """Remove request.user from the voters queryset of an answer instance."""
+        """Remove request.user from the likes queryset of an answer instance."""
         answer = get_object_or_404(Answer, pk=pk)
         user = request.user
 
-        answer.voters.remove(user)
+        answer.likes.remove(user)
         answer.save()
 
         serializer_context = {"request": request}
@@ -75,11 +75,11 @@ class AnswerLikeAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, pk):
-        """Add request.user to the voters queryset of an answer instance."""
+        """Add request.user to the likes queryset of an answer instance."""
         answer = get_object_or_404(Answer, pk=pk)
         user = request.user
 
-        answer.voters.add(user)
+        answer.likes.add(user)
         answer.save()
 
         serializer_context = {"request": request}
