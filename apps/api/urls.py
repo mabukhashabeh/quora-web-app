@@ -15,5 +15,13 @@ urlpatterns = [
 
     path("questions/<slug:question_slug>/answer/",
          views.AnswerCreateAPIView.as_view(),
-         name="create-answer")
+         name="answer-create"),
+
+    path("answers/<int:pk>/",
+         views.AnswerReadUpdateDeleteAPIView.as_view(),
+         name="answer-detail"),
+
+    path("answers/<int:pk>/like/",
+         views.AnswerLikeAPIView.as_view(),
+         name="answer-like")
 ]
